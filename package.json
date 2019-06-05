@@ -1,11 +1,11 @@
 {
   "name": "@daviswhitehead/shayr-resources",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "resources shayred across the suite of shayr products",
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "engines": {
-    "node": "8"
+    "node": ">=8"
   },
   "scripts": {
     "build": "tsc",

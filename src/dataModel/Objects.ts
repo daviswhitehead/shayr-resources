@@ -108,8 +108,8 @@ export const usersPostsDefault: UsersPostsType = {
   adds: [],
   dones: [],
   likes: [],
-  postId: '',
   ...postDefault,
+  postId: '',
   shares: [],
   userId: ''
 };
