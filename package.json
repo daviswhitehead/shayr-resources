@@ -1,11 +1,15 @@
 {
   "name": "@daviswhitehead/shayr-resources",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "resources shayred across the suite of shayr products",
   "main": "built/index.js",
   "types": "built/index.d.ts",
+  "engines": {
+    "node": "8"
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "deploy": "yarn build && yarn publish"
   },
   "repository": {
     "type": "git",
