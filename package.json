@@ -1,11 +1,10 @@
 {
   "name": "@daviswhitehead/shayr-resources",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "resources shayred across the suite of shayr products",
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "scripts": {
-    "publish": "npm publish --access public",
     "build": "tsc"
   },
   "repository": {
