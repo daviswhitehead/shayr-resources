@@ -1,6 +1,6 @@
 // https://github.com/medialize/URI.js
 import URI from 'urijs';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 // run the below to test deeplinking
 // // iOS: xcrun simctl openurl booted shayr://com.daviswhitehead.shayr.ios.dev/Feed?param=meow
@@ -11,7 +11,7 @@ import _ from 'lodash';
 // // https://facebook.github.io/react-native/docs/linking
 
 // valid deeplink protocols
-export const protocols = ['shayr', 'https'];
+export const protocols: Array<string> = ['shayr', 'https'];
 
 // takes an object and turns it into a URL query
 export const objectToURLQuery = (params: any) =>
@@ -43,8 +43,8 @@ export const parseAppLink = (url: string) => {
 
 // takes a desired screen and its paramaters and builds a link the app can handle
 export const buildAppLink = (
-  protocol: any,
+  protocol: string,
   hostname: string,
   screen: string,
-  params: string
+  params: any
 ) => `${protocol}://${hostname}/${screen}?${objectToURLQuery(params)}`;

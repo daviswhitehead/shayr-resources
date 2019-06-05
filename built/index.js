@@ -1,13 +1,13 @@
 "use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const DataModelObjects = __importStar(require("./DataModel/Objects"));
-exports.DataModelObjects = DataModelObjects;
-const UtilsDeepLinks = __importStar(require("./Utils/DeepLinks"));
-exports.UtilsDeepLinks = UtilsDeepLinks;
+var Objects_1 = require("./DataModel/Objects");
+exports.userDefault = Objects_1.userDefault;
+exports.actionDefault = Objects_1.actionDefault;
+exports.friendshipDefault = Objects_1.friendshipDefault;
+exports.postDefault = Objects_1.postDefault;
+exports.usersPostsDefault = Objects_1.usersPostsDefault;
+var DeepLinks_1 = require("./Utils/DeepLinks");
+exports.protocols = DeepLinks_1.protocols;
+exports.objectToURLQuery = DeepLinks_1.objectToURLQuery;
+exports.parseAppLink = DeepLinks_1.parseAppLink;
+exports.buildAppLink = DeepLinks_1.buildAppLink;

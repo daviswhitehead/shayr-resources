@@ -1,5 +1,5 @@
-import _ from 'lodash';
-export declare const protocols: string[];
+import * as _ from 'lodash';
+export declare const protocols: Array<string>;
 export declare const objectToURLQuery: (params: any) => string;
 export declare const parseAppLink: (url: string) => {
     url: string;
@@ -8,4 +8,4 @@ export declare const parseAppLink: (url: string) => {
     screen: any;
     params: _.Dictionary<string>;
 };
-export declare const buildAppLink: (protocol: any, hostname: string, screen: string, params: string) => string;
+export declare const buildAppLink: (protocol: string, hostname: string, screen: string, params: any) => string;

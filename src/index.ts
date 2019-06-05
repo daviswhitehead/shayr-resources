@@ -1,4 +1,19 @@
-import * as DataModelObjects from './DataModel/Objects';
-import * as UtilsDeepLinks from './Utils/DeepLinks';
-
-export { DataModelObjects, UtilsDeepLinks };
+import { parseAppLink } from './Utils/DeepLinks';
+export {
+  UserType,
+  userDefault,
+  ActionType,
+  actionDefault,
+  FriendshipType,
+  friendshipDefault,
+  PostType,
+  postDefault,
+  UsersPostsType,
+  usersPostsDefault
+} from './DataModel/Objects';
+export {
+  protocols,
+  objectToURLQuery,
+  parseAppLink,
+  buildAppLink
+} from './Utils/DeepLinks';
