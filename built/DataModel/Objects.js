@@ -41,4 +41,4 @@ exports.postDefault = {
     updatedAt: null,
     url: ''
 };
-exports.usersPostsDefault = Object.assign({ adds: [], dones: [], likes: [], postId: '' }, exports.postDefault, { shares: [], userId: '' });
+exports.usersPostsDefault = Object.assign({ adds: [], dones: [], likes: [] }, exports.postDefault, { postId: '', shares: [], userId: '' });
