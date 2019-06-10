@@ -2,17 +2,9 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 // https://github.com/medialize/URI.js
 const urijs_1 = __importDefault(require("urijs"));
-const _ = __importStar(require("lodash"));
 // run the below to test deeplinking
 // // iOS: xcrun simctl openurl booted shayr://com.daviswhitehead.shayr.ios.dev/Feed?param=meow
 // // Android: adb shell am start -W -a android.intent.action.VIEW -d "shayr://shayr/HelloWorld?param=meow" com.daviswhitehead.shayr.android.dev
@@ -34,9 +26,7 @@ exports.parseAppLink = (url) => {
     // // protocol: shayr, hostname: com.daviswhitehead.shayr.ios.dev,
     // // path: /Feed, query: param=meow
     const uri = new urijs_1.default(url);
-    const params = uri._parts.query
-        ? _.fromPairs(Array.from(new URLSearchParams(uri._parts.query).entries()))
-        : {};
+    const params = urijs_1.default.parseQuery(uri._parts.query);
     return {
         url,
         protocol: uri._parts.protocol,

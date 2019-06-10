@@ -1,6 +1,5 @@
 // https://github.com/medialize/URI.js
 import URI from 'urijs';
-import * as _ from 'lodash';
 
 // run the below to test deeplinking
 // // iOS: xcrun simctl openurl booted shayr://com.daviswhitehead.shayr.ios.dev/Feed?param=meow
@@ -29,9 +28,8 @@ export const parseAppLink = (url: string) => {
 
   const uri: any = new URI(url);
 
-  const params = uri._parts.query
-    ? _.fromPairs(Array.from(new URLSearchParams(uri._parts.query).entries()))
-    : {};
+  const params = URI.parseQuery(uri._parts.query);
+
   return {
     url,
     protocol: uri._parts.protocol,

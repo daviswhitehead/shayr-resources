@@ -17,3 +17,4 @@ export {
   parseAppLink,
   buildAppLink
 } from './Utils/DeepLinks';
+export { getDocument, getDocumentsInCollection } from './Firebase/Get';
