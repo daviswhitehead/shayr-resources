@@ -11,3 +11,6 @@ exports.protocols = DeepLinks_1.protocols;
 exports.objectToURLQuery = DeepLinks_1.objectToURLQuery;
 exports.parseAppLink = DeepLinks_1.parseAppLink;
 exports.buildAppLink = DeepLinks_1.buildAppLink;
+var Get_1 = require("./Firebase/Get");
+exports.getDocument = Get_1.getDocument;
+exports.getDocumentsInCollection = Get_1.getDocumentsInCollection;
