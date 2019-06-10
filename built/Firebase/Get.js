@@ -1,11 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDocument = (database, reference) => database.get(reference).then((queryDocumentSnapshot) => {
-    if (queryDocumentSnapshot.exists) {
-        return Object.assign({ id: queryDocumentSnapshot.id, reference }, queryDocumentSnapshot.data());
-    }
-    return {};
-});
+exports.getDocument = (database, reference) => {
+    return database
+        .doc(reference)
+        .get()
+        .then((queryDocumentSnapshot) => {
+        if (queryDocumentSnapshot.exists) {
+            return Object.assign({ id: queryDocumentSnapshot.id, reference }, queryDocumentSnapshot.data());
+        }
+        return {};
+    })
+        .catch((error) => {
+        console.error(error);
+        return {};
+    });
+};
 exports.getDocumentsInCollection = (query, reference) => {
     // query = db.collection(reference).where("a", "==", "b")
     const obj = {};
