@@ -8,11 +8,11 @@ exports.getDocument = (database, reference) => {
         if (queryDocumentSnapshot.exists) {
             return Object.assign({ id: queryDocumentSnapshot.id, reference }, queryDocumentSnapshot.data());
         }
-        return {};
+        return undefined;
     })
         .catch((error) => {
         console.error(error);
-        return {};
+        return undefined;
     });
 };
 exports.getDocumentsInCollection = (query, reference) => {
@@ -25,6 +25,6 @@ exports.getDocumentsInCollection = (query, reference) => {
             });
             return obj;
         }
-        return {};
+        return undefined;
     });
 };

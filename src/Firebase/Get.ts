@@ -10,11 +10,11 @@ export const getDocument = (database: any, reference: string) => {
           ...queryDocumentSnapshot.data()
         };
       }
-      return {};
+      return undefined;
     })
     .catch((error: any) => {
       console.error(error);
-      return {};
+      return undefined;
     });
 };
 
@@ -32,6 +32,6 @@ export const getDocumentsInCollection = (query: any, reference: string) => {
       });
       return obj;
     }
-    return {};
+    return undefined;
   });
 };
