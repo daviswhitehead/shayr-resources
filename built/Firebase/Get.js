@@ -6,7 +6,7 @@ exports.getDocument = (database, reference) => {
         .get()
         .then((queryDocumentSnapshot) => {
         if (queryDocumentSnapshot.exists) {
-            return Object.assign({ id: queryDocumentSnapshot.id, reference }, queryDocumentSnapshot.data());
+            return Object.assign({ _id: queryDocumentSnapshot.id, _reference: reference }, queryDocumentSnapshot.data());
         }
         return undefined;
     })
@@ -18,13 +18,19 @@ exports.getDocument = (database, reference) => {
 exports.getDocumentsInCollection = (query, reference) => {
     // query = db.collection(reference).where("a", "==", "b")
     const obj = {};
-    return query.get().then((querySnapshot) => {
+    return query
+        .get()
+        .then((querySnapshot) => {
         if (!querySnapshot.empty) {
             querySnapshot.forEach((doc) => {
-                obj[doc.id] = Object.assign({ id: 'doc.id', reference: `${reference}/${doc.id}` }, doc.data());
+                obj[doc.id] = Object.assign({ _id: `${doc.id}`, _reference: `${reference}/${doc.id}` }, doc.data());
             });
             return obj;
         }
+        return undefined;
+    })
+        .catch((error) => {
+        console.error(error);
         return undefined;
     });
 };
