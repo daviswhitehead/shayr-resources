@@ -18,22 +18,33 @@ export const getDocument = (database: any, reference: string) => {
     });
 };
 
-export const getDocumentsInCollection = (query: any, reference: string) => {
+export const getDocumentsInCollection = (
+  query: any,
+  reference: string,
+  pageLimiter?: number
+) => {
   // query = db.collection(reference).where("a", "==", "b")
-  const obj: { [key: string]: any } = {};
+  const documents: { [key: string]: any } = {};
+  let lastDocument: any;
 
   return query
     .get()
     .then((querySnapshot: any) => {
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc: any) => {
-          obj[doc.id] = {
+          documents[doc.id] = {
             _id: `${doc.id}`,
             _reference: `${reference}/${doc.id}`,
             ...doc.data()
           };
         });
-        return obj;
+        if (pageLimiter) {
+          lastDocument =
+            querySnapshot.docs.length === pageLimiter
+              ? querySnapshot.docs[querySnapshot.docs.length - 1]
+              : 'done';
+        }
+        return { documents, lastDocument };
       }
       return undefined;
     })

@@ -15,17 +15,24 @@ exports.getDocument = (database, reference) => {
         return undefined;
     });
 };
-exports.getDocumentsInCollection = (query, reference) => {
+exports.getDocumentsInCollection = (query, reference, pageLimiter) => {
     // query = db.collection(reference).where("a", "==", "b")
-    const obj = {};
+    const documents = {};
+    let lastDocument;
     return query
         .get()
         .then((querySnapshot) => {
         if (!querySnapshot.empty) {
             querySnapshot.forEach((doc) => {
-                obj[doc.id] = Object.assign({ _id: `${doc.id}`, _reference: `${reference}/${doc.id}` }, doc.data());
+                documents[doc.id] = Object.assign({ _id: `${doc.id}`, _reference: `${reference}/${doc.id}` }, doc.data());
             });
-            return obj;
+            if (pageLimiter) {
+                lastDocument =
+                    querySnapshot.docs.length === pageLimiter
+                        ? querySnapshot.docs[querySnapshot.docs.length - 1]
+                        : 'done';
+            }
+            return { documents, lastDocument };
         }
         return undefined;
     })
