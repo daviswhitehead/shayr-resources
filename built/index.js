@@ -1,16 +1,8 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-var Objects_1 = require("./DataModel/Objects");
-exports.userDefault = Objects_1.userDefault;
-exports.actionDefault = Objects_1.actionDefault;
-exports.friendshipDefault = Objects_1.friendshipDefault;
-exports.postDefault = Objects_1.postDefault;
-exports.usersPostsDefault = Objects_1.usersPostsDefault;
-var DeepLinks_1 = require("./Utils/DeepLinks");
-exports.protocols = DeepLinks_1.protocols;
-exports.objectToURLQuery = DeepLinks_1.objectToURLQuery;
-exports.parseAppLink = DeepLinks_1.parseAppLink;
-exports.buildAppLink = DeepLinks_1.buildAppLink;
-var Get_1 = require("./Firebase/Get");
-exports.getDocument = Get_1.getDocument;
-exports.getDocumentsInCollection = Get_1.getDocumentsInCollection;
+__export(require("./DataModel/Objects"));
+__export(require("./Utils/DeepLinks"));
+__export(require("./Firebase/Get"));

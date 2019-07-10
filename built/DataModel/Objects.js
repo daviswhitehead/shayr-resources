@@ -1,44 +1,63 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userDefault = {
-    createdAt: null,
-    email: '',
-    facebookProfilePhoto: '',
-    firstName: '',
-    lastName: '',
-    pushToken: '',
-    updatedAt: null
-};
-exports.actionDefault = {
+exports.postActionDefault = {
     active: false,
-    createdAt: null,
+    createdAt: '',
     postId: '',
-    updatedAt: null,
+    updatedAt: '',
     userId: ''
 };
+exports.postActionExample = {
+    active: false,
+    createdAt: '2019-03-20T03:24:33.268Z',
+    postId: '6mN6SsgdI84JpCimZovI',
+    updatedAt: '2019-03-20T03:24:33.268Z',
+    userId: 'KhTuhl0T7WRx9dRspOanzvU4SHG3'
+};
+exports.shareActionExample = {
+    active: false,
+    createdAt: '2019-03-20T03:24:33.268Z',
+    postId: '6mN6SsgdI84JpCimZovI',
+    updatedAt: '2019-03-20T03:24:33.268Z',
+    userId: 'KhTuhl0T7WRx9dRspOanzvU4SHG3',
+    url: 'https://google.com',
+    mentions: ['KhTuhl0T7WRx9dRspOanzvU4SHG3', 'KhTuhl0T7WRx9dRspOanzvU4SHG3'],
+    comment: 'This post is cool'
+};
 exports.friendshipDefault = {
-    createdAt: null,
+    createdAt: '',
     initiatingUserId: '',
     receivingUserId: '',
     status: '',
-    updatedAt: null,
+    updatedAt: '',
     userIds: []
 };
 exports.postDefault = {
-    addCount: 0,
-    createdAt: null,
+    addsCount: 0,
+    createdAt: '',
     description: '',
-    doneCount: 0,
+    donesCount: 0,
     image: '',
-    likeCount: 0,
+    likesCount: 0,
     medium: '',
     publisher: {
         logo: '',
         name: ''
     },
-    shareCount: 0,
+    sharesCount: 0,
     title: '',
-    updatedAt: null,
+    updatedAt: '',
     url: ''
 };
+exports.userAtomDefault = {
+    addsCount: 0,
+    donesCount: 0,
+    firstName: '',
+    friendsCount: 0,
+    lastName: '',
+    likesCount: 0,
+    profilePhoto: '',
+    sharesCount: 0
+};
+exports.userDefault = Object.assign({}, exports.userAtomDefault, { createdAt: '', email: '', pushToken: '', updatedAt: '' });
 exports.usersPostsDefault = Object.assign({ adds: [], dones: [], likes: [] }, exports.postDefault, { postId: '', shares: [], userId: '' });

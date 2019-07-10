@@ -1,40 +1,37 @@
+// COLLECTIONS
+export type collection =
+  | 'adds'
+  | 'dones'
+  | 'friendships'
+  | 'likes'
+  | 'posts'
+  | 'shares'
+  | 'users'
+  | 'users_posts';
+
 // TIMESTAMPS
-export type createdAt = any;
-export type updatedAt = any;
+export type timestamp = any;
 
 // IDS
-export type postId = string;
-export type userId = string;
-export type initiatingUserId = string;
-export type receivingUserId = string;
+export type documentId = string;
 
 // STRINGS
+export type comment = string;
+export type description = string;
 export type email = string;
-export type facebookProfilePhoto = string;
-export type firstName = string;
-export type lastName = string;
+export type medium = '' | 'text' | 'audio' | 'video';
+export type name = string;
 export type pushToken = string;
 export type status = '' | 'pending' | 'accepted' | 'rejected';
-export type description = string;
-export type image = string;
-export type medium = '' | 'text' | 'audio' | 'video';
-export type publisherLogo = string;
-export type publisherName = string;
 export type title = string;
+export type uri = string;
 export type url = string;
 
 // BOOLEANS
 export type active = boolean;
 
 // NUMBERS
-export type addCount = number;
-export type doneCount = number;
-export type likeCount = number;
-export type shareCount = number;
+export type count = number;
 
 // ARRAYS
-export type userIds = Array<userId>;
-export type adds = Array<userId>;
-export type dones = Array<userId>;
-export type likes = Array<userId>;
-export type shares = Array<userId>;
+export type documentIds = Array<documentId>;

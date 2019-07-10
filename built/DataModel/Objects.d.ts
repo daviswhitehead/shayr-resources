@@ -1,55 +1,74 @@
 import * as Fields from './Fields';
-export interface UserType {
-    createdAt: Fields.createdAt;
-    email: Fields.email;
-    facebookProfilePhoto: Fields.facebookProfilePhoto;
-    firstName: Fields.firstName;
-    lastName: Fields.lastName;
-    pushToken?: Fields.pushToken;
-    updatedAt: Fields.updatedAt;
-}
-export declare const userDefault: UserType;
-export interface ActionType {
+export interface PostAction {
     active: Fields.active;
-    createdAt: Fields.createdAt;
-    postId: Fields.postId;
-    updatedAt: Fields.updatedAt;
-    userId: Fields.userId;
+    createdAt?: Fields.timestamp;
+    postId: Fields.documentId;
+    updatedAt: Fields.timestamp;
+    userId: Fields.documentId;
 }
-export declare const actionDefault: ActionType;
-export interface FriendshipType {
-    createdAt: Fields.createdAt;
-    initiatingUserId: Fields.initiatingUserId;
-    receivingUserId: Fields.receivingUserId;
+export declare const postActionDefault: PostAction;
+export declare const postActionExample: PostAction;
+export interface ShareAction extends PostAction {
+    url: Fields.url;
+    mentions?: Fields.documentIds;
+    comment?: Fields.comment;
+}
+export declare const shareActionExample: ShareAction;
+export interface Friendship {
+    createdAt: Fields.timestamp;
+    initiatingUserId: Fields.documentId;
+    receivingUserId: Fields.documentId;
     status: Fields.status;
-    updatedAt: Fields.updatedAt;
-    userIds: Fields.userIds;
+    updatedAt: Fields.timestamp;
+    userIds: Fields.documentIds;
 }
-export declare const friendshipDefault: FriendshipType;
-export interface PostType {
-    addCount?: Fields.addCount;
-    createdAt: Fields.createdAt;
+export declare const friendshipDefault: Friendship;
+export interface Post {
+    addsCount?: Fields.count;
+    createdAt: Fields.timestamp;
     description: Fields.description;
-    doneCount?: Fields.doneCount;
-    image?: Fields.image;
-    likeCount?: Fields.likeCount;
+    donesCount?: Fields.count;
+    image?: Fields.uri;
+    likesCount?: Fields.count;
     medium?: Fields.medium;
     publisher?: {
-        logo?: Fields.publisherLogo;
-        name?: Fields.publisherName;
+        logo?: Fields.uri;
+        name?: Fields.name;
     };
-    shareCount?: Fields.shareCount;
+    sharesCount?: Fields.count;
     title: Fields.title;
-    updatedAt: Fields.updatedAt;
+    updatedAt: Fields.timestamp;
     url: Fields.url;
 }
-export declare const postDefault: PostType;
-export interface UsersPostsType extends PostType {
-    adds?: Fields.adds;
-    dones?: Fields.dones;
-    likes?: Fields.likes;
-    postId: Fields.postId;
-    shares?: Fields.shares;
-    userId: Fields.userId;
+export declare const postDefault: Post;
+export interface UserAtom {
+    addsCount?: Fields.count;
+    donesCount?: Fields.count;
+    firstName: Fields.name;
+    friendsCount?: Fields.count;
+    lastName: Fields.name;
+    likesCount?: Fields.count;
+    profilePhoto: Fields.uri;
+    sharesCount?: Fields.count;
 }
-export declare const usersPostsDefault: UsersPostsType;
+export declare const userAtomDefault: UserAtom;
+export interface User extends UserAtom {
+    createdAt: Fields.timestamp;
+    email: Fields.email;
+    pushToken?: Fields.pushToken;
+    updatedAt: Fields.timestamp;
+}
+export declare const userDefault: User;
+export interface UsersPosts extends Post {
+    adds?: Fields.documentIds;
+    addsActive?: Fields.active;
+    dones?: Fields.documentIds;
+    donesActive?: Fields.active;
+    likes?: Fields.documentIds;
+    likesActive?: Fields.active;
+    postId: Fields.documentId;
+    shares?: Fields.documentIds;
+    sharesActive?: Fields.active;
+    userId: Fields.documentId;
+}
+export declare const usersPostsDefault: UsersPosts;
