@@ -6,3 +6,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./DataModel/Objects"));
 __export(require("./Utils/DeepLinks"));
 __export(require("./Firebase/Get"));
+__export(require("./Firebase/Batch"));
