@@ -17,7 +17,7 @@ exports.messageDefault = {
     },
     apns: {
         headers: {
-            ['apns-priority']: 10
+            ['apns-priority']: '10'
         },
         payload: {
             aps: {

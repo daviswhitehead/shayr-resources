@@ -17,7 +17,7 @@ export interface Message {
     };
     apns: {
         headers: {
-            ['apns-priority']: number;
+            ['apns-priority']: string;
         };
         payload: {
             aps: {
