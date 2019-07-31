@@ -19,7 +19,7 @@ export interface Message {
   };
   apns: {
     headers: {
-      ['apns-priority']: number;
+      ['apns-priority']: string;
     };
     payload: {
       aps: {
@@ -50,7 +50,7 @@ export const messageDefault: Message = {
   },
   apns: {
     headers: {
-      ['apns-priority']: 10
+      ['apns-priority']: '10'
     },
     payload: {
       aps: {
