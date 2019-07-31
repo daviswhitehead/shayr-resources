@@ -1,6 +1,5 @@
 import * as Fields from './Fields';
 import { DocumentFormatting } from '../Firebase/Formatters';
-import { priority } from '../../../shayr-backend/functions/src/notifications/Compose';
 
 // notifications/{notificationId}
 export interface Message {
