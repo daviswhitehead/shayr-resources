@@ -16,6 +16,7 @@ export type timestamp = any;
 export type documentId = string;
 
 // STRINGS
+export type payload = string;
 export type comment = string;
 export type description = string;
 export type email = string;

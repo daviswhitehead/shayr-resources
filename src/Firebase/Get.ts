@@ -1,14 +1,12 @@
+import { formatDocumentSnapshot } from './Formatters';
+
 export const getDocument = (database: any, reference: string) => {
   return database
     .doc(reference)
     .get()
     .then((queryDocumentSnapshot: any) => {
       if (queryDocumentSnapshot.exists) {
-        return {
-          _id: queryDocumentSnapshot.id,
-          _reference: reference,
-          ...queryDocumentSnapshot.data()
-        };
+        return formatDocumentSnapshot(queryDocumentSnapshot);
       }
       return undefined;
     })
@@ -31,12 +29,10 @@ export const getDocumentsInCollection = (
     .get()
     .then((querySnapshot: any) => {
       if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc: any) => {
-          documents[doc.id] = {
-            _id: `${doc.id}`,
-            _reference: `${reference}/${doc.id}`,
-            ...doc.data()
-          };
+        querySnapshot.forEach((queryDocumentSnapshot: any) => {
+          documents[queryDocumentSnapshot.id] = formatDocumentSnapshot(
+            queryDocumentSnapshot
+          );
         });
         if (pageLimiter) {
           lastDocument =

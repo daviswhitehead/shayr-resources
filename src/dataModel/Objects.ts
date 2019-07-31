@@ -29,6 +29,7 @@ export const postActionExample: PostAction = {
 
 // shares/{userId}_{postId}
 export interface ShareAction extends PostAction {
+  payload: Fields.payload;
   url: Fields.url;
   mentions?: Fields.documentIds;
   comment?: Fields.comment;
@@ -36,13 +37,15 @@ export interface ShareAction extends PostAction {
 
 export const shareActionExample: ShareAction = {
   active: false,
+  comment: 'This post is cool',
   createdAt: '2019-03-20T03:24:33.268Z',
+  mentions: ['KhTuhl0T7WRx9dRspOanzvU4SHG3', 'KhTuhl0T7WRx9dRspOanzvU4SHG3'],
+  payload:
+    'A Dark Consensus About Screens and Kids Begins to Emerge in Silicon Valley https://nyti.ms/2JkjOdJ',
   postId: '6mN6SsgdI84JpCimZovI',
   updatedAt: '2019-03-20T03:24:33.268Z',
   userId: 'KhTuhl0T7WRx9dRspOanzvU4SHG3',
-  url: 'https://google.com',
-  mentions: ['KhTuhl0T7WRx9dRspOanzvU4SHG3', 'KhTuhl0T7WRx9dRspOanzvU4SHG3'],
-  comment: 'This post is cool'
+  url: 'https://google.com'
 };
 
 // friendships/{initiatingUserId}_{receivingUserId}
