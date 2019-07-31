@@ -1,5 +1,46 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.messageDefault = {
+    token: '',
+    notification: {
+        title: '',
+        body: ''
+    },
+    data: {
+        title: '',
+        body: '',
+        channelId: 'General',
+        appLink: ''
+    },
+    android: {
+        priority: 'high'
+    },
+    apns: {
+        headers: {
+            ['apns-priority']: 10
+        },
+        payload: {
+            aps: {
+                alert: {
+                    title: '',
+                    body: ''
+                },
+                badge: 1
+            }
+        }
+    }
+};
+exports.notificationDefault = {
+    createdAt: null,
+    fromId: '',
+    isRead: false,
+    isPressed: false,
+    message: exports.messageDefault,
+    pressedAt: null,
+    readAt: null,
+    receivingUserId: '',
+    updatedAt: null
+};
 exports.postActionDefault = {
     active: false,
     createdAt: '',

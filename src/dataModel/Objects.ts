@@ -1,9 +1,98 @@
 import * as Fields from './Fields';
+import { DocumentFormatting } from '../Firebase/Formatters';
+import { priority } from '../../../shayr-backend/functions/src/notifications/Compose';
+
+// notifications/{notificationId}
+export interface Message {
+  token: string;
+  notification: {
+    title: string;
+    body: string;
+  };
+  data: {
+    title?: string;
+    body?: string;
+    channelId: string;
+    appLink: string;
+  };
+  android: {
+    priority: string;
+  };
+  apns: {
+    headers: {
+      ['apns-priority']: number;
+    };
+    payload: {
+      aps: {
+        alert: {
+          title: string;
+          body: string;
+        };
+        badge: number;
+      };
+    };
+  };
+}
+
+export const messageDefault: Message = {
+  token: '',
+  notification: {
+    title: '',
+    body: ''
+  },
+  data: {
+    title: '',
+    body: '',
+    channelId: 'General',
+    appLink: ''
+  },
+  android: {
+    priority: 'high'
+  },
+  apns: {
+    headers: {
+      ['apns-priority']: 10
+    },
+    payload: {
+      aps: {
+        alert: {
+          title: '',
+          body: ''
+        },
+        badge: 1
+      }
+    }
+  }
+};
+
+export interface Notification extends DocumentFormatting {
+  createdAt?: Fields.timestamp;
+  fromId: Fields.documentId;
+  isRead?: boolean;
+  isPressed?: boolean;
+  message: Message;
+  pressedAt?: Fields.timestamp;
+  readAt?: Fields.timestamp;
+  receivingUserId: Fields.documentId;
+  updatedAt?: Fields.timestamp;
+}
+
+export const notificationDefault: Notification = {
+  createdAt: null,
+  fromId: '',
+  isRead: false,
+  isPressed: false,
+  message: messageDefault,
+  pressedAt: null,
+  readAt: null,
+  receivingUserId: '',
+  updatedAt: null
+};
 
 // adds/{userId}_{postId}
 // dones/{userId}_{postId}
 // likes/{userId}_{postId}
-export interface PostAction {
+export interface PostAction extends DocumentFormatting {
   active: Fields.active;
   createdAt?: Fields.timestamp;
   postId: Fields.documentId;
@@ -28,7 +117,7 @@ export const postActionExample: PostAction = {
 };
 
 // shares/{userId}_{postId}
-export interface ShareAction extends PostAction {
+export interface ShareAction extends PostAction, DocumentFormatting {
   payload: Fields.payload;
   url: Fields.url;
   mentions?: Fields.documentIds;
@@ -49,7 +138,7 @@ export const shareActionExample: ShareAction = {
 };
 
 // friendships/{initiatingUserId}_{receivingUserId}
-export interface Friendship {
+export interface Friendship extends DocumentFormatting {
   createdAt: Fields.timestamp;
   initiatingUserId: Fields.documentId;
   receivingUserId: Fields.documentId;
@@ -68,7 +157,7 @@ export const friendshipDefault: Friendship = {
 };
 
 // posts/{postId}
-export interface Post {
+export interface Post extends DocumentFormatting {
   addsCount?: Fields.count;
   createdAt: Fields.timestamp;
   description: Fields.description;
@@ -105,7 +194,7 @@ export const postDefault: Post = {
 };
 
 // users/{userId}
-export interface UserAtom {
+export interface UserAtom extends DocumentFormatting {
   addsCount?: Fields.count;
   donesCount?: Fields.count;
   firstName: Fields.name;
@@ -127,7 +216,7 @@ export const userAtomDefault: UserAtom = {
   sharesCount: 0
 };
 
-export interface User extends UserAtom {
+export interface User extends UserAtom, DocumentFormatting {
   createdAt: Fields.timestamp;
   email: Fields.email;
   pushToken?: Fields.pushToken;
@@ -143,7 +232,7 @@ export const userDefault: User = {
 };
 
 // users_posts/{userId}_{postId}
-export interface UsersPosts extends Post {
+export interface UsersPosts extends Post, DocumentFormatting {
   adds?: Fields.documentIds;
   addsActive?: Fields.active;
   dones?: Fields.documentIds;

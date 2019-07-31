@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export class Batcher {
   database: any;
   batch: any;
@@ -26,7 +28,7 @@ export class Batcher {
   set(
     reference: any,
     data: any,
-    options: any,
+    options: any = {},
     additionalOperations: number = 0
   ) {
     this.batchArray[this.batchIndex].set(reference, data, options);
@@ -40,6 +42,21 @@ export class Batcher {
   }
 
   write() {
-    this.batchArray.forEach(async batch => await batch.commit());
+    // this.batchArray.forEach(async batch => await batch.commit());
+
+    const errors = this.batchArray.reduce(async (result, batch) => {
+      result.push(
+        await batch
+          .commit()
+          .then(() => true)
+          .catch((e: Error) => {
+            console.error(e);
+            return e;
+          })
+      );
+      return result;
+    }, []);
+
+    return _.pull(errors, true);
   }
 }

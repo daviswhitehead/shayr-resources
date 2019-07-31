@@ -1,5 +1,48 @@
 import * as Fields from './Fields';
 import { DocumentFormatting } from '../Firebase/Formatters';
+export interface Message {
+    token: string;
+    notification: {
+        title: string;
+        body: string;
+    };
+    data: {
+        title?: string;
+        body?: string;
+        channelId: string;
+        appLink: string;
+    };
+    android: {
+        priority: string;
+    };
+    apns: {
+        headers: {
+            ['apns-priority']: number;
+        };
+        payload: {
+            aps: {
+                alert: {
+                    title: string;
+                    body: string;
+                };
+                badge: number;
+            };
+        };
+    };
+}
+export declare const messageDefault: Message;
+export interface Notification extends DocumentFormatting {
+    createdAt?: Fields.timestamp;
+    fromId: Fields.documentId;
+    isRead?: boolean;
+    isPressed?: boolean;
+    message: Message;
+    pressedAt?: Fields.timestamp;
+    readAt?: Fields.timestamp;
+    receivingUserId: Fields.documentId;
+    updatedAt?: Fields.timestamp;
+}
+export declare const notificationDefault: Notification;
 export interface PostAction extends DocumentFormatting {
     active: Fields.active;
     createdAt?: Fields.timestamp;
