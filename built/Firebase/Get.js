@@ -16,8 +16,7 @@ exports.getDocument = (database, reference) => {
         return undefined;
     });
 };
-exports.getDocumentsInCollection = (query, reference, pageLimiter) => {
-    // query = db.collection(reference).where("a", "==", "b")
+exports.getDocumentsInCollection = (query, pageLimiter) => {
     const documents = {};
     let lastDocument;
     return query

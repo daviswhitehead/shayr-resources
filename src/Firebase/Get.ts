@@ -16,12 +16,7 @@ export const getDocument = (database: any, reference: string) => {
     });
 };
 
-export const getDocumentsInCollection = (
-  query: any,
-  reference: string,
-  pageLimiter?: number
-) => {
-  // query = db.collection(reference).where("a", "==", "b")
+export const getDocumentsInCollection = (query: any, pageLimiter?: number) => {
   const documents: { [key: string]: any } = {};
   let lastDocument: any;
 
