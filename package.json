@@ -1,6 +1,6 @@
 {
   "name": "@daviswhitehead/shayr-resources",
-  "version": "1.2.14",
+  "version": "1.2.15",
   "description": "resources shayred across the suite of shayr products",
   "main": "built/index.js",
   "types": "built/index.d.ts",
