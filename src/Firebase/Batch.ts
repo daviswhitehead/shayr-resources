@@ -41,21 +41,22 @@ export class Batcher {
     }
   }
 
-  write() {
+  async write() {
     // this.batchArray.forEach(async batch => await batch.commit());
-
-    const errors = this.batchArray.reduce(async (result, batch) => {
-      result.push(
-        await batch
-          .commit()
-          .then(() => true)
-          .catch((e: Error) => {
-            console.error(e);
-            return e;
-          })
-      );
-      return result;
-    }, []);
+    const errors = await Promise.all(
+      this.batchArray.reduce((result, batch) => {
+        result.push(
+          batch
+            .commit()
+            .then(() => true)
+            .catch((e: Error) => {
+              console.error(e);
+              return e;
+            })
+        );
+        return result;
+      }, [])
+    );
 
     return _.pull(errors, true);
   }
