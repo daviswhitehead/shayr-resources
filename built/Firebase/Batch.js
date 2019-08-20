@@ -28,10 +28,10 @@ class Batcher {
             this.operationCounter = 0;
         }
     }
-    write() {
+    async write() {
         // this.batchArray.forEach(async batch => await batch.commit());
-        const errors = this.batchArray.reduce(async (result, batch) => {
-            result.push(await batch
+        const errors = await Promise.all(this.batchArray.reduce((result, batch) => {
+            result.push(batch
                 .commit()
                 .then(() => true)
                 .catch((e) => {
@@ -39,7 +39,7 @@ class Batcher {
                 return e;
             }));
             return result;
-        }, []);
+        }, []));
         return lodash_1.default.pull(errors, true);
     }
 }
