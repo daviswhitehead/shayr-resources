@@ -13,6 +13,7 @@ export interface Message {
     body?: string;
     channelId: string;
     appLink: string;
+    badge: string;
   };
   android: {
     priority: string;
@@ -43,7 +44,8 @@ export const messageDefault: Message = {
     title: '',
     body: '',
     channelId: 'General',
-    appLink: ''
+    appLink: '',
+    badge: '1'
   },
   android: {
     priority: 'high'
@@ -150,7 +152,7 @@ export const friendshipDefault: Friendship = {
   createdAt: '',
   initiatingUserId: '',
   receivingUserId: '',
-  status: '',
+  status: 'pending',
   updatedAt: '',
   userIds: []
 };
@@ -181,7 +183,7 @@ export const postDefault: Post = {
   donesCount: 0,
   image: '',
   likesCount: 0,
-  medium: '',
+  medium: undefined,
   publisher: {
     logo: '',
     name: ''
@@ -195,13 +197,16 @@ export const postDefault: Post = {
 // users/{userId}
 export interface UserAtom extends DocumentFormatting {
   addsCount?: Fields.count;
+  commentsCount?: Fields.count;
   donesCount?: Fields.count;
   firstName: Fields.name;
   friendsCount?: Fields.count;
   lastName: Fields.name;
   likesCount?: Fields.count;
-  profilePhoto: Fields.uri;
+  mentionsCount?: Fields.count;
+  facebookProfilePhoto: Fields.uri;
   sharesCount?: Fields.count;
+  unreadNotificationsCount?: Fields.count;
 }
 
 export const userAtomDefault: UserAtom = {
@@ -211,13 +216,16 @@ export const userAtomDefault: UserAtom = {
   friendsCount: 0,
   lastName: '',
   likesCount: 0,
-  profilePhoto: '',
-  sharesCount: 0
+  mentionsCount: 0,
+  facebookProfilePhoto: '',
+  sharesCount: 0,
+  unreadNotificationsCount: 0
 };
 
 export interface User extends UserAtom, DocumentFormatting {
   createdAt: Fields.timestamp;
   email: Fields.email;
+  friends: Fields.documentIds;
   pushToken?: Fields.pushToken;
   updatedAt: Fields.timestamp;
 }
@@ -226,6 +234,7 @@ export const userDefault: User = {
   ...userAtomDefault,
   createdAt: '',
   email: '',
+  friends: [''],
   pushToken: '',
   updatedAt: ''
 };

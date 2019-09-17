@@ -10,7 +10,8 @@ exports.messageDefault = {
         title: '',
         body: '',
         channelId: 'General',
-        appLink: ''
+        appLink: '',
+        badge: '1'
     },
     android: {
         priority: 'high'
@@ -70,7 +71,7 @@ exports.friendshipDefault = {
     createdAt: '',
     initiatingUserId: '',
     receivingUserId: '',
-    status: '',
+    status: 'pending',
     updatedAt: '',
     userIds: []
 };
@@ -81,7 +82,7 @@ exports.postDefault = {
     donesCount: 0,
     image: '',
     likesCount: 0,
-    medium: '',
+    medium: undefined,
     publisher: {
         logo: '',
         name: ''
@@ -98,8 +99,10 @@ exports.userAtomDefault = {
     friendsCount: 0,
     lastName: '',
     likesCount: 0,
-    profilePhoto: '',
-    sharesCount: 0
+    mentionsCount: 0,
+    facebookProfilePhoto: '',
+    sharesCount: 0,
+    unreadNotificationsCount: 0
 };
-exports.userDefault = Object.assign({}, exports.userAtomDefault, { createdAt: '', email: '', pushToken: '', updatedAt: '' });
+exports.userDefault = Object.assign({}, exports.userAtomDefault, { createdAt: '', email: '', friends: [''], pushToken: '', updatedAt: '' });
 exports.usersPostsDefault = Object.assign({ adds: [], dones: [], likes: [] }, exports.postDefault, { postId: '', shares: [], userId: '' });

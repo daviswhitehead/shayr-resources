@@ -1,9 +1,12 @@
 // COLLECTIONS
 export type collection =
   | 'adds'
+  | 'comments'
   | 'dones'
   | 'friendships'
   | 'likes'
+  | 'mentions'
+  | 'notifications'
   | 'posts'
   | 'shares'
   | 'users'
@@ -20,10 +23,15 @@ export type payload = string;
 export type comment = string;
 export type description = string;
 export type email = string;
-export type medium = '' | 'text' | 'audio' | 'video';
+export type medium = 'text' | 'audio' | 'video';
 export type name = string;
 export type pushToken = string;
-export type status = '' | 'pending' | 'accepted' | 'rejected';
+export type status =
+  | 'pending'
+  | 'accepted'
+  | 'rejected'
+  | 'deleted'
+  | 'removed';
 export type title = string;
 export type uri = string;
 export type url = string;

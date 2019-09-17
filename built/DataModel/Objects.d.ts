@@ -11,6 +11,7 @@ export interface Message {
         body?: string;
         channelId: string;
         appLink: string;
+        badge: string;
     };
     android: {
         priority: string;
@@ -88,18 +89,22 @@ export interface Post extends DocumentFormatting {
 export declare const postDefault: Post;
 export interface UserAtom extends DocumentFormatting {
     addsCount?: Fields.count;
+    commentsCount?: Fields.count;
     donesCount?: Fields.count;
     firstName: Fields.name;
     friendsCount?: Fields.count;
     lastName: Fields.name;
     likesCount?: Fields.count;
-    profilePhoto: Fields.uri;
+    mentionsCount?: Fields.count;
+    facebookProfilePhoto: Fields.uri;
     sharesCount?: Fields.count;
+    unreadNotificationsCount?: Fields.count;
 }
 export declare const userAtomDefault: UserAtom;
 export interface User extends UserAtom, DocumentFormatting {
     createdAt: Fields.timestamp;
     email: Fields.email;
+    friends: Fields.documentIds;
     pushToken?: Fields.pushToken;
     updatedAt: Fields.timestamp;
 }
